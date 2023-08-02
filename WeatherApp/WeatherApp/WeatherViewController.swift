@@ -13,6 +13,7 @@ class WeatherViewController: UIViewController {
     var locManager = CLLocationManager()
     var currentLocation: CLLocation!
 
+    @IBOutlet weak var buttonCities: UIButton!
     @IBOutlet weak var labelTemperature: UILabel!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var weatherImageView: UIImageView!
@@ -25,5 +26,14 @@ class WeatherViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    
+    
+    @IBAction func didTapLocation(_ sender: Any) {
+    }
+    
+    @IBAction func didTapSearch(_ sender: Any) {
+    }
+    
+    @IBAction func didTapCities(_ sender: Any) {
+    }
 }
