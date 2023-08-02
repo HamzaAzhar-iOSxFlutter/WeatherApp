@@ -128,6 +128,44 @@
             </objects>
             <point key="canvasLocation" x="246.56488549618319" y="2.8169014084507045"/>
         </scene>
+        <!--Weather List View Controller-->
+        <scene sceneID="NFD-MI-ljb">
+            <objects>
+                <viewController id="e3G-Nt-JmJ" customClass="WeatherListViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lXS-ia-6bP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qSd-68-5jc">
+                                <rect key="frame" x="0.0" y="157" width="393" height="695"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHy-NK-bMr">
+                                <rect key="frame" x="20" y="89" width="71" height="48"/>
+                                <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Y3I-pp-BwP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qSd-68-5jc" secondAttribute="trailing" id="2q2-Jh-dbf"/>
+                            <constraint firstItem="qSd-68-5jc" firstAttribute="leading" secondItem="lXS-ia-6bP" secondAttribute="leading" id="CaF-zF-xTB"/>
+                            <constraint firstItem="JHy-NK-bMr" firstAttribute="top" secondItem="Y3I-pp-BwP" secondAttribute="top" constant="30" id="SZ5-wP-6Lm"/>
+                            <constraint firstItem="JHy-NK-bMr" firstAttribute="leading" secondItem="Y3I-pp-BwP" secondAttribute="leading" constant="20" id="T92-gY-clb"/>
+                            <constraint firstItem="qSd-68-5jc" firstAttribute="top" secondItem="JHy-NK-bMr" secondAttribute="bottom" constant="20" id="gND-2k-MsK"/>
+                            <constraint firstAttribute="bottom" secondItem="qSd-68-5jc" secondAttribute="bottom" id="ixc-nm-RJU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="qSd-68-5jc" id="8we-Kw-tpT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pd4-5i-veG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1242" y="3"/>
+        </scene>
     </scenes>
     <resources>
         <image name="location.circle.fill" catalog="system" width="128" height="123"/>

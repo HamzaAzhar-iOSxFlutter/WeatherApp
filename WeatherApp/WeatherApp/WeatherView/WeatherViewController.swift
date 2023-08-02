@@ -22,14 +22,15 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        LocationManager.shared.getLocation { [weak self] location in
-            DispatchQueue.main.async {
-                //guard let self = self else { return }
-                print("latitude: " ,location.coordinate.latitude)
-                print("longitude: " ,location.coordinate.longitude)
-            }
-        }
-      
+//        LocationManager.shared.getLocation { [weak self] location in
+//            DispatchQueue.main.async {
+//                //guard let self = self else { return }
+//                print("latitude: " ,location.coordinate.latitude)
+//                print("longitude: " ,location.coordinate.longitude)
+//            }
+//        }
+        let viewModel: WeatherViewModel = WeatherViewModel(binding: self)
+        viewModel.fetchWeatherDetails(locationName: "london")
     }
     
     
@@ -40,5 +41,16 @@ class WeatherViewController: UIViewController {
     }
     
     @IBAction func didTapCities(_ sender: Any) {
+        let vc = WeatherListViewController()
+        self.navigationController?.pushViewController(vc
+                                                      , animated: true)
     }
+}
+
+extension WeatherViewController: WeatherRefreshDelegate {
+    func reloadWeather() {
+        print("Hello")
+    }
+    
+    
 }
