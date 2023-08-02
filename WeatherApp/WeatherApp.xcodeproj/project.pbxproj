@@ -13,6 +13,7 @@
 		BB01A38B2A782B560063BF1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB01A38A2A782B560063BF1D /* Assets.xcassets */; };
 		BB01A38E2A782B560063BF1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB01A38C2A782B560063BF1D /* LaunchScreen.storyboard */; };
 		BB9D42062A78AE05004FA873 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9D42052A78AE05004FA873 /* WeatherViewController.swift */; };
+		BB9D42082A79EE6C004FA873 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9D42072A79EE6C004FA873 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		BB01A38D2A782B560063BF1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB01A38F2A782B560063BF1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB9D42052A78AE05004FA873 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		BB9D42072A79EE6C004FA873 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				BB01A38C2A782B560063BF1D /* LaunchScreen.storyboard */,
 				BB01A38F2A782B560063BF1D /* Info.plist */,
 				BB9D42052A78AE05004FA873 /* WeatherViewController.swift */,
+				BB9D42072A79EE6C004FA873 /* LocationManager.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB9D42082A79EE6C004FA873 /* LocationManager.swift in Sources */,
 				BB01A3822A782B560063BF1D /* AppDelegate.swift in Sources */,
 				BB9D42062A78AE05004FA873 /* WeatherViewController.swift in Sources */,
 				BB01A3842A782B560063BF1D /* SceneDelegate.swift in Sources */,

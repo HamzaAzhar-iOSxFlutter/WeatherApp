@@ -9,9 +9,6 @@ import UIKit
 import MapKit
 
 class WeatherViewController: UIViewController {
-    
-    var locManager = CLLocationManager()
-    var currentLocation: CLLocation!
 
     @IBOutlet weak var buttonCities: UIButton!
     @IBOutlet weak var labelTemperature: UILabel!
@@ -25,6 +22,14 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        LocationManager.shared.getLocation { [weak self] location in
+            DispatchQueue.main.async {
+                //guard let self = self else { return }
+                print("latitude: " ,location.coordinate.latitude)
+                print("longitude: " ,location.coordinate.longitude)
+            }
+        }
+      
     }
     
     
