@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -27,6 +28,9 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="49.666666666666664" height="56"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="location.circle.fill" catalog="system"/>
+                                                <connections>
+                                                    <action selector="didTapLocation:" destination="awW-WU-12u" eventType="touchUpInside" id="Pe2-lU-fRy"/>
+                                                </connections>
                                             </button>
                                             <searchBar contentMode="redraw" placeholder="Search Location" translatesAutoresizingMaskIntoConstraints="NO" id="9AJ-j7-0H8">
                                                 <rect key="frame" x="71.666666666666686" y="0.0" width="250" height="56"/>
@@ -42,6 +46,9 @@
                                                 <rect key="frame" x="343.33333333333331" y="0.0" width="49.666666666666686" height="56"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
+                                                <connections>
+                                                    <action selector="didTapSearch:" destination="awW-WU-12u" eventType="touchUpInside" id="eUx-Cm-aGE"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -70,14 +77,31 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WTC-t5-CYb">
+                                        <rect key="frame" x="30" y="762" width="333" height="60"/>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="JbL-hk-ioF"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Cities">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapCities:" destination="awW-WU-12u" eventType="touchUpInside" id="iEl-2f-KjW"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="8ye-kS-gnX" firstAttribute="top" secondItem="nrM-HC-oxO" secondAttribute="top" constant="100" id="0Hu-Yy-L5C"/>
                                     <constraint firstItem="8ye-kS-gnX" firstAttribute="leading" secondItem="nrM-HC-oxO" secondAttribute="leading" id="3fc-bs-jli"/>
+                                    <constraint firstAttribute="trailing" secondItem="WTC-t5-CYb" secondAttribute="trailing" constant="30" id="BFC-nq-abg"/>
+                                    <constraint firstAttribute="bottom" secondItem="WTC-t5-CYb" secondAttribute="bottom" constant="30" id="K0e-6K-pdB"/>
                                     <constraint firstItem="kF0-9P-tum" firstAttribute="centerX" secondItem="nrM-HC-oxO" secondAttribute="centerX" id="YHf-LI-YPS"/>
                                     <constraint firstAttribute="trailing" secondItem="8ye-kS-gnX" secondAttribute="trailing" id="hzC-MW-YJT"/>
                                     <constraint firstItem="kF0-9P-tum" firstAttribute="centerY" secondItem="nrM-HC-oxO" secondAttribute="centerY" id="k1c-pR-JpC"/>
+                                    <constraint firstItem="WTC-t5-CYb" firstAttribute="leading" secondItem="nrM-HC-oxO" secondAttribute="leading" constant="30" id="pyl-vm-Qan"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -91,6 +115,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buttonCities" destination="WTC-t5-CYb" id="39I-ZS-Fie"/>
                         <outlet property="buttonLocation" destination="w2i-3D-brc" id="n8D-Ko-a0Q"/>
                         <outlet property="buttonSearch" destination="mT3-Mb-A8s" id="wnl-sZ-cPz"/>
                         <outlet property="labelTemperature" destination="6MW-Zl-vT5" id="QQG-ct-aw5"/>
@@ -108,6 +133,9 @@
         <image name="location.circle.fill" catalog="system" width="128" height="123"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="sun.min.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
