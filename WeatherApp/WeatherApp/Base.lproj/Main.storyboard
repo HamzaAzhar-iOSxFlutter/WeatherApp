@@ -56,10 +56,10 @@
                                                 </constraints>
                                             </imageView>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3yB-TU-BOH">
-                                                <rect key="frame" x="34.333333333333329" y="237.00000000000003" width="131" height="31.999999999999972"/>
+                                                <rect key="frame" x="15.333333333333329" y="237.00000000000003" width="169" height="31.999999999999972"/>
                                                 <segments>
-                                                    <segment title="First"/>
-                                                    <segment title="Second"/>
+                                                    <segment title="Celsius"/>
+                                                    <segment title="Fahrenheit"/>
                                                 </segments>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6MW-Zl-vT5">
@@ -90,6 +90,14 @@
                             <constraint firstItem="nrM-HC-oxO" firstAttribute="top" secondItem="5hp-sn-Z4w" secondAttribute="top" id="vCn-w7-ReN"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonLocation" destination="w2i-3D-brc" id="n8D-Ko-a0Q"/>
+                        <outlet property="buttonSearch" destination="mT3-Mb-A8s" id="wnl-sZ-cPz"/>
+                        <outlet property="labelTemperature" destination="6MW-Zl-vT5" id="QQG-ct-aw5"/>
+                        <outlet property="searchBar" destination="9AJ-j7-0H8" id="sRf-ae-ibX"/>
+                        <outlet property="segmentControl" destination="3yB-TU-BOH" id="RXa-Fw-nj7"/>
+                        <outlet property="weatherImageView" destination="teD-x1-Agn" id="XFs-Qx-fWE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mlo-PP-Xw5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
