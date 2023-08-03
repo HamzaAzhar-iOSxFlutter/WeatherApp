@@ -68,6 +68,9 @@
                                                     <segment title="Celsius"/>
                                                     <segment title="Fahrenheit"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="didSelectSegmentControl:" destination="awW-WU-12u" eventType="valueChanged" id="LL4-9B-atg"/>
+                                                </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6MW-Zl-vT5">
                                                 <rect key="frame" x="60.333333333333336" y="305" width="79.333333333333314" height="48"/>
