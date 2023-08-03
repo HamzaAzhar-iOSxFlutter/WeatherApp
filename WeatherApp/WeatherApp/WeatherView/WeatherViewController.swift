@@ -22,15 +22,26 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-//        LocationManager.shared.getLocation { [weak self] location in
-//            DispatchQueue.main.async {
-//                //guard let self = self else { return }
-//                print("latitude: " ,location.coordinate.latitude)
-//                print("longitude: " ,location.coordinate.longitude)
-//            }
-//        }
-        let viewModel: WeatherViewModel = WeatherViewModel(binding: self)
-        viewModel.fetchWeatherDetails(locationName: "london")
+        LocationManager.shared.getLocation { [weak self] location in
+            DispatchQueue.main.async {
+                //guard let self = self else { return }
+                print("latitude: " ,location.coordinate.latitude)
+                print("longitude: " ,location.coordinate.longitude)
+                
+                let latitude = location.coordinate.latitude
+                let longitude = location.coordinate.longitude
+                
+                let viewModel: WeatherViewModel = WeatherViewModel(binding: self!)
+                viewModel.fetchWeatherDetailsWith(latitude: latitude, longitude: longitude) { weatherModel, status in
+                    switch status {
+                    case true:
+                        break
+                    case false:
+                        break
+                    }
+                }
+            }
+        }
     }
     
     
@@ -41,9 +52,9 @@ class WeatherViewController: UIViewController {
     }
     
     @IBAction func didTapCities(_ sender: Any) {
-        let vc = WeatherListViewController()
-        self.navigationController?.pushViewController(vc
-                                                      , animated: true)
+//        let vc = WeatherListViewController()
+//        self.navigationController?.pushViewController(vc
+//                                                      , animated: true)
     }
 }
 
