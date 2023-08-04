@@ -30,11 +30,16 @@ extension WeatherListViewController: UITableViewDelegate {
 
 extension WeatherListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return LocalDataManager.weatherCollection.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherListTableViewCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherListTableViewCell", for: indexPath) as? WeatherListTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.labelCityName.text = LocalDataManager.weatherCollection[indexPath.row].cityName
+        cell.labelTemperature.text = LocalDataManager.weatherCollection[indexPath.row].temperature
+        cell.labelCondition.text = LocalDataManager.weatherCollection[indexPath.row].weatherCondition
         return cell
     }
     

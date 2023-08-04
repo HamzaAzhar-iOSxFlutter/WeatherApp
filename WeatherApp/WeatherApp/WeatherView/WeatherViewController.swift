@@ -10,6 +10,8 @@ import MapKit
 
 class WeatherViewController: UIViewController {
     
+    @IBOutlet weak var labelWeatherCondition: UILabel!
+    @IBOutlet weak var labelCityName: UILabel!
     @IBOutlet weak var buttonCities: UIButton!
     @IBOutlet weak var labelTemperature: UILabel!
     @IBOutlet weak var segmentControl: UISegmentedControl!
@@ -19,6 +21,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var buttonLocation: UIButton!
     
     var weatherTracker: WeatherModel?
+    var searchedCity: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,18 +42,29 @@ class WeatherViewController: UIViewController {
                 let latitude = location.coordinate.latitude
                 let longitude = location.coordinate.longitude
                 
-                let viewModel: WeatherViewModel = WeatherViewModel(binding: self)
-                viewModel.fetchWeatherDetailsWith(latitude: latitude, longitude: longitude) { weatherModel, status in
+                
+                WeatherViewModel.fetchWeatherDetailsWith(latitude: latitude, longitude: longitude) { weatherModel, status in
                     switch status {
                     case true:
                         self.weatherTracker = weatherModel
-                        DispatchQueue.main.async { [weak self] in
-                            self?.labelTemperature.text = "\(weatherModel?.current.tempC ?? 0.0)"
-                        }
+                        self.computeWeatherDetailsBeforeRendering(weatherModel: weatherModel, ifCurrentLocation: true)
                     case false:
                         break
                     }
                 }
+            }
+        }
+    }
+    
+    fileprivate func computeWeatherDetailsBeforeRendering(weatherModel: WeatherModel?, ifCurrentLocation: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else { return }
+            let locationName = ifCurrentLocation == true ? "Current Location" : "\(weatherModel?.location.name ?? "")"
+            strongSelf.labelCityName.text = locationName
+            strongSelf.labelWeatherCondition.text = "\(weatherModel?.current.condition?.text ?? "")"
+            strongSelf.labelTemperature.text = "\(weatherModel?.current.tempC ?? 0.0)"
+            if let weather = weatherModel {
+                LocalDataManager.weatherCollection.append(WeatherLocalModel(cityName: locationName, weatherCondition: weatherModel?.current.condition?.text ?? "", temperature: String(weatherModel?.current.tempC ?? 0.0), image: ""))
             }
         }
     }
@@ -73,6 +87,14 @@ class WeatherViewController: UIViewController {
     }
     
     @IBAction func didTapSearch(_ sender: Any) {
+        WeatherViewModel.fetchWeatherBasedOn(cityName: self.searchedCity) { WeatherModel, status in
+            switch status {
+            case true:
+                self.computeWeatherDetailsBeforeRendering(weatherModel: WeatherModel, ifCurrentLocation: false)
+            case false:
+                print("bad request")
+            }
+        }
     }
     
     @IBAction func didTapCities(_ sender: Any) {
@@ -82,8 +104,10 @@ class WeatherViewController: UIViewController {
     }
 }
 
-extension WeatherViewController: WeatherRefreshDelegate {
-    func reloadWeather() {
-        print("Hello")
+extension WeatherViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if !searchText.isEmpty {
+            self.searchedCity = searchText
+        }
     }
 }

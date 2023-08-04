@@ -12,6 +12,7 @@ class WeatherListTableViewCell: UITableViewCell {
     @IBOutlet weak var labelCondition: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
     
+    @IBOutlet weak var labelCityName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

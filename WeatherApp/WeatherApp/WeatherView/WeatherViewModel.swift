@@ -7,51 +7,13 @@
 
 import Foundation
 
-// MARK: - WeatherModel
-struct WeatherModel: Codable {
-    let current: Current
-}
-
-// MARK: - Current
-struct Current: Codable {
-    let tempC, tempF: Double?
-    let condition: WeatherCondition?
-    enum CodingKeys: String, CodingKey {
-        case tempC = "temp_c"
-        case tempF = "temp_f"
-        case condition = "condition"
-    }
-}
-
-struct WeatherCondition: Codable {
-    let text, icon: String?
-    let code: Int?
-    
-    enum CodingKeys: String, CodingKey {
-        case text
-        case icon
-        case code
-    }
-}
-
-
-protocol WeatherRefreshDelegate: AnyObject {
-    func reloadWeather()
-}
-
 class WeatherViewModel {
     
-    let searchQuery = "search.json"
-    let currentQuery = "current.json"
-    let baseURL = "https://api.weatherapi.com/v1/"
-    let apiKey = "ba125a4741684032b5b31544230208"
-    var delegate: WeatherRefreshDelegate?
+    static let currentQuery = "current.json"
+    static let baseURL = "https://api.weatherapi.com/v1/"
+    static let apiKey = "ba125a4741684032b5b31544230208"
     
-    init(binding : WeatherRefreshDelegate) {
-        self.delegate = binding
-    }
-    
-    func fetchWeatherDetailsWith(latitude: Double, longitude: Double, completion: @escaping (WeatherModel?, Bool) -> ()) {
+    static func fetchWeatherDetailsWith(latitude: Double, longitude: Double, completion: @escaping (WeatherModel?, Bool) -> ()) {
         
         guard var urlComponent = URLComponents(string: baseURL + currentQuery) else { return }
         
@@ -74,8 +36,8 @@ class WeatherViewModel {
         task.resume()
     }
     
-    func fetchWeatherBasedOn(cityName: String, completion: @escaping (WeatherModel?, Bool) -> ()) {
-        guard var urlComponent = URLComponents(string: baseURL + self.searchQuery) else { return }
+    static func fetchWeatherBasedOn(cityName: String, completion: @escaping (WeatherModel?, Bool) -> ()) {
+        guard var urlComponent = URLComponents(string: baseURL + self.currentQuery) else { return }
         urlComponent.queryItems = [
             URLQueryItem(name: "key", value: self.apiKey),
             URLQueryItem(name: "q", value: "\(cityName)")
