@@ -27,10 +27,17 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.initialSetup()
+    }
+    
+    fileprivate func initialSetup() {
         self.searchBar.delegate = self
-        self.makeInitialWeatherRequest()
         self.buttonCities.layer.cornerRadius = self.buttonCities.frame.height / 2
         self.labelTemperature.text = ""
+        self.labelCityName.text = ""
+        self.labelWeatherCondition.text = ""
+        self.searchBar.layer.cornerRadius = 10
+        self.segmentControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
     }
     
     fileprivate func makeInitialWeatherRequest() {
@@ -104,11 +111,7 @@ class WeatherViewController: UIViewController {
         self.makeRequest()
     }
     
-    @IBAction func didTapCities(_ sender: Any) {
-        //        let vc = WeatherListViewController()
-        //        self.navigationController?.pushViewController(vc
-        //                                                      , animated: true)
-    }
+    @IBAction func didTapCities(_ sender: Any) {}
 }
 
 extension WeatherViewController: UISearchBarDelegate {
