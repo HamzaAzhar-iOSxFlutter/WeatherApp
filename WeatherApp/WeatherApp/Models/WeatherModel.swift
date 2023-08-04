@@ -40,5 +40,6 @@ struct WeatherCondition: Codable {
 }
 
 struct WeatherLocalModel {
-    let cityName, weatherCondition, temperature, image: String
+    let cityName, weatherCondition, temperature: String
+    let imageCode: Int
 }

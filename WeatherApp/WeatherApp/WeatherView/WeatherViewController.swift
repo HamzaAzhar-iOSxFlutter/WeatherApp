@@ -27,6 +27,7 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.searchBar.delegate = self
         self.makeInitialWeatherRequest()
         self.buttonCities.layer.cornerRadius = self.buttonCities.frame.height / 2
         self.labelTemperature.text = ""
@@ -63,8 +64,21 @@ class WeatherViewController: UIViewController {
             strongSelf.labelCityName.text = locationName
             strongSelf.labelWeatherCondition.text = "\(weatherModel?.current.condition?.text ?? "")"
             strongSelf.labelTemperature.text = "\(weatherModel?.current.tempC ?? 0.0)"
-            if let weather = weatherModel {
-                LocalDataManager.weatherCollection.append(WeatherLocalModel(cityName: locationName, weatherCondition: weatherModel?.current.condition?.text ?? "", temperature: String(weatherModel?.current.tempC ?? 0.0), image: ""))
+            strongSelf.weatherImageView.image = ImageManager.getWeatherImagesBasedOn(code: weatherModel?.current.condition?.code ?? 0)
+            
+            LocalDataManager.weatherCollection.append(WeatherLocalModel(cityName: locationName, weatherCondition: weatherModel?.current.condition?.text ?? "", temperature: String(weatherModel?.current.tempC ?? 0.0), imageCode: weatherModel?.current.condition?.code ?? 0))
+            
+        }
+    }
+    
+    fileprivate func makeRequest() {
+        self.view.endEditing(true)
+        WeatherViewModel.fetchWeatherBasedOn(cityName: self.searchedCity) { WeatherModel, status in
+            switch status {
+            case true:
+                self.computeWeatherDetailsBeforeRendering(weatherModel: WeatherModel, ifCurrentLocation: false)
+            case false:
+                print("bad request")
             }
         }
     }
@@ -87,14 +101,7 @@ class WeatherViewController: UIViewController {
     }
     
     @IBAction func didTapSearch(_ sender: Any) {
-        WeatherViewModel.fetchWeatherBasedOn(cityName: self.searchedCity) { WeatherModel, status in
-            switch status {
-            case true:
-                self.computeWeatherDetailsBeforeRendering(weatherModel: WeatherModel, ifCurrentLocation: false)
-            case false:
-                print("bad request")
-            }
-        }
+        self.makeRequest()
     }
     
     @IBAction func didTapCities(_ sender: Any) {
@@ -108,6 +115,13 @@ extension WeatherViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
             self.searchedCity = searchText
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchText = searchBar.text, !searchText.isEmpty {
+            self.searchedCity = searchText
+            self.makeRequest()
         }
     }
 }
