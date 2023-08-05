@@ -40,7 +40,7 @@ extension WeatherListViewController: UITableViewDataSource {
         cell.labelCityName.text = LocalDataManager.weatherCollection[indexPath.row].cityName
         cell.labelTemperature.text = LocalDataManager.weatherCollection[indexPath.row].temperature
         cell.labelCondition.text = LocalDataManager.weatherCollection[indexPath.row].weatherCondition
-        cell.weatherImage.image = ImageManager.getWeatherImagesBasedOn(code: LocalDataManager.weatherCollection[indexPath.row].imageCode)
+        cell.weatherImage.image = ImageManager.getWeatherImagesBasedOn(codeForWeather: LocalDataManager.weatherCollection[indexPath.row].imageCode)
         return cell
     }
     

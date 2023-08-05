@@ -67,11 +67,12 @@ class WeatherViewController: UIViewController {
     fileprivate func computeWeatherDetailsBeforeRendering(weatherModel: WeatherModel?, ifCurrentLocation: Bool) {
         DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return }
+            strongSelf.weatherTracker = weatherModel
             let locationName = ifCurrentLocation == true ? "Current Location" : "\(weatherModel?.location.name ?? "")"
             strongSelf.labelCityName.text = locationName
             strongSelf.labelWeatherCondition.text = "\(weatherModel?.current.condition?.text ?? "")"
             strongSelf.labelTemperature.text = "\(weatherModel?.current.tempC ?? 0.0)"
-            strongSelf.weatherImageView.image = ImageManager.getWeatherImagesBasedOn(code: weatherModel?.current.condition?.code ?? 0)
+            strongSelf.weatherImageView.image = ImageManager.getWeatherImagesBasedOn(codeForWeather: weatherModel?.current.condition?.code ?? 0)
             
             LocalDataManager.weatherCollection.append(WeatherLocalModel(cityName: locationName, weatherCondition: weatherModel?.current.condition?.text ?? "", temperature: String(weatherModel?.current.tempC ?? 0.0), imageCode: weatherModel?.current.condition?.code ?? 0))
             

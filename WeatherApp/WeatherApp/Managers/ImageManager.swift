@@ -8,10 +8,10 @@
 import UIKit
 
 class ImageManager {
-    static func getWeatherImagesBasedOn(code: Int) -> UIImage? {
+    static func getWeatherImagesBasedOn(codeForWeather: Int) -> UIImage? {
         let config =  UIImage.SymbolConfiguration.preferringMulticolor()
 
-        switch code {
+        switch codeForWeather {
         case 1009, 1135:
             return UIImage(systemName: "smoke.fill", withConfiguration: config)
         case 1063, 1087, 1150, 1153, 1180, 1183, 1186, 1189, 1192, 1195, 1198, 1201, 1240, 1243, 1246, 1273, 1276:
